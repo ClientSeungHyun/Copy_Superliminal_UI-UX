@@ -1,34 +1,54 @@
 using System.Linq.Expressions;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private OVRCameraRig CameraRig;
-
-    private Transform TransformComponent;
-    private Rigidbody RigidBodyComponent;
+    private OVRCameraRig        CameraRig;
+    private Transform           TransformCom;
+    private Rigidbody           RigidBodyCom;
+    private CapsuleCollider     CapsuleColliderCom;
 
     [SerializeField]
-    private float MoveSpeed = 10.0f;
+    private GameObject  SelectObject;
+    private Transform   SelectObjectTransformCom;
+    private Vector3     SelectObjectOriginalScale;
+    private float       SelectObjectInitialDistance;
+
     [SerializeField]
-    private float MouseSensitivity = 10.0f;
+    private float   MoveSpeed = 7.0f;
+    [SerializeField]
+    private float   MouseSensitivity = 10.0f;
+    [SerializeField]
+    private float   JumpPower = 1000.0f;
+
+    [SerializeField]
+    private bool    isGround = true;
+
 
     protected void Awake()
     {
         CameraRig = GameObject.Find("Camera Rig").GetComponent<OVRCameraRig>();
         Assert.IsNotNull(CameraRig, "CameraRig가 할당되어 있지 않습니다.");
 
-        TransformComponent = GetComponent<Transform>();
-        Assert.IsNotNull(TransformComponent, "TransformComponent 할당되어 있지 않습니다.");
+        TransformCom = GetComponent<Transform>();
+        Assert.IsNotNull(TransformCom, "TransformComponent 할당되어 있지 않습니다.");
 
-        RigidBodyComponent = GetComponent<Rigidbody>();
-        Assert.IsNotNull(TransformComponent, "RigidBodyComponent 할당되어 있지 않습니다.");
+        RigidBodyCom = GetComponent<Rigidbody>();
+        Assert.IsNotNull(RigidBodyCom, "RigidBodyComponent 할당되어 있지 않습니다.");
+        RigidBodyCom.mass = 3.0f;
 
+        CapsuleColliderCom = GetComponent<CapsuleCollider>();
+        Assert.IsNotNull(CapsuleColliderCom, "CapsuleColliderCom 할당되어 있지 않습니다.");
+
+        JumpPower = 1000.0f;
+        isGround = true;
     }
 
     void Start()
@@ -39,19 +59,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FindSelectObject();
+        DragSelectObject();
+
+        CheckGround();
+    }
+
+    private void FixedUpdate()
+    {
         #region 이동
         if (OVRManager.isHmdPresent)
         {
-            ControllerMove();
+            ControllerLocomotion();
         }
         else
         {
-            KeyboardMove();
+            KeyboardLocomotion();
         }
         #endregion
     }
 
-    private void ControllerMove()
+    private void ControllerLocomotion()
     {
         if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
@@ -69,11 +97,17 @@ public class Player : MonoBehaviour
             Vector3 MoveDir = CameraForward * vCoord.z + CameraRight * vCoord.x;
             MoveDir.Normalize();
 
-            TransformComponent.position += MoveDir * MoveSpeed * Time.deltaTime;
+            Vector3 TargetPosition = RigidBodyCom.position + MoveDir * MoveSpeed * Time.fixedDeltaTime;
+            RigidBodyCom.MovePosition(TargetPosition);
+        }
+        else
+        {
+            Vector3 CurrentVelocity = RigidBodyCom.linearVelocity;
+            RigidBodyCom.linearVelocity = new Vector3(0, CurrentVelocity.y, 0);
         }
     }
 
-    private void KeyboardMove()
+    private void KeyboardLocomotion()
     {
         Vector3 vKeyInput = Vector3.zero;
 
@@ -107,10 +141,10 @@ public class Player : MonoBehaviour
             CameraRight.y = 0;
             CameraRight.Normalize();
 
-            Vector3 MoveDir = CameraForward * vKeyInput.z + CameraRight * vKeyInput.x;
-            MoveDir.Normalize();
+            Vector3 MoveDir = (CameraForward * vKeyInput.z + CameraRight * vKeyInput.x).normalized;
 
-            TransformComponent.position += MoveDir * MoveSpeed * Time.deltaTime;
+            Vector3 TargetPosition = RigidBodyCom.position + MoveDir * MoveSpeed * Time.fixedDeltaTime;
+            RigidBodyCom.MovePosition(TargetPosition);
         }
 
         if (Input.GetKey(KeyCode.Mouse1))
@@ -119,6 +153,86 @@ public class Player : MonoBehaviour
 
             Quaternion Yaw = Quaternion.AngleAxis(MouseX, Vector3.up);
 
-            CameraRig.centerEyeAnchor.transform.rotation = CameraRig.centerEyeAnchor.transform.rotation * Yaw;}
+            CameraRig.centerEyeAnchor.transform.rotation = CameraRig.centerEyeAnchor.transform.rotation * Yaw;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space) && isGround)
+        {
+            isGround = false;
+            RigidBodyCom.AddForce(new Vector3(0, JumpPower, 0));
+        }
+    }
+
+    private void FindSelectObject()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Ray Mouseray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit Hit;
+            if (Physics.Raycast(Mouseray, out Hit, 100.0f, LayerMask.GetMask("Grabable")))
+            {
+                SelectObject = Hit.transform.gameObject;
+                SelectObject.GetComponent<Rigidbody>().useGravity = false;
+
+                SelectObjectOriginalScale = SelectObject.transform.localScale;
+                SelectObjectInitialDistance = Vector3.Distance(CameraRig.centerEyeAnchor.transform.position, SelectObject.transform.position);
+
+                SelectObjectTransformCom = Hit.transform;
+            }
+        }
+    }
+
+    private void DragSelectObject()
+    {
+        if (SelectObject)
+        {
+            Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 TargetPosition = MouseRay.GetPoint(10.0f);
+
+            int GrabableLayerMask = 1 << LayerMask.NameToLayer("Grabable");
+
+            // Raycast 해서 targetPosition 업데이트
+            RaycastHit hit;
+            if (Physics.Raycast(MouseRay, out hit, 100f, ~GrabableLayerMask))
+            {
+                TargetPosition = hit.point;
+            }
+
+            Collider ObjectCollider = SelectObject.GetComponent<Collider>();
+            float ObjectRadius = ObjectCollider.bounds.extents.magnitude * 0.5f;
+
+            Vector3 OffsetFromSurface = hit.normal * ObjectRadius;
+            TargetPosition += OffsetFromSurface;
+
+            SelectObject.transform.position = Vector3.Lerp(SelectObject.transform.position, TargetPosition, 10f * Time.deltaTime);
+
+            // 거리 비례 스케일 조정
+            float CurrentDistance = Vector3.Distance(CameraRig.centerEyeAnchor.transform.position, TargetPosition);
+            float ScaleMultiplier = CurrentDistance / SelectObjectInitialDistance;
+            SelectObject.transform.localScale = SelectObjectOriginalScale * ScaleMultiplier;
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                SelectObject.GetComponent<Rigidbody>().useGravity = true;
+                SelectObject.GetComponent<Rigidbody>().isKinematic = false;
+
+                SelectObject = null;
+            }
+        }
+    }
+
+    private void CheckGround()
+    {
+        Vector3 CheckPosition = transform.position;
+        CheckPosition.y -= CapsuleColliderCom.height * 0.5f;
+
+        bool bRayHit = Physics.Raycast(CheckPosition, Vector3.down, 0.5f, LayerMask.GetMask("Ground"));
+        bool bSphereHit = Physics.CheckSphere(CheckPosition, 0.3f, LayerMask.GetMask("Ground"));
+
+        isGround = bRayHit || bSphereHit;
+
+        // 디버그용
+        Debug.DrawRay(CheckPosition, Vector3.down * 0.5f, isGround ? Color.green : Color.red);
     }
 }

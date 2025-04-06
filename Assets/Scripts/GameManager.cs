@@ -9,6 +9,8 @@ public class GameManager: Singleton<GameManager>
 
         DontDestroyOnLoad(this);
         Debug.Log("GameManager 생성됨!");
+
+        Application.targetFrameRate = 60;
     }
 
     void Start()
