@@ -116,14 +116,9 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))
         {
             float MouseX = Input.GetAxis("Mouse X") * MouseSensitivity;
-            float MouseY = Input.GetAxis("Mouse Y") * MouseSensitivity;
 
-            Quaternion Pitch = Quaternion.AngleAxis(-MouseY, Vector3.right);
             Quaternion Yaw = Quaternion.AngleAxis(MouseX, Vector3.up);
 
-            // 기존 회전에 덧붙이기 (회전 순서: yaw → pitch)
-            TransformComponent.rotation = TransformComponent.rotation * Yaw;
-            TransformComponent.rotation = TransformComponent.rotation * Pitch;
-        }
+            CameraRig.centerEyeAnchor.transform.rotation = CameraRig.centerEyeAnchor.transform.rotation * Yaw;}
     }
 }
