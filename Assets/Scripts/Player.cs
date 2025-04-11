@@ -12,6 +12,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private OVRCameraRig        CameraRig;
+
     private Transform           TransformCom;
     private Rigidbody           RigidBodyCom;
     private CapsuleCollider     CapsuleColliderCom;
@@ -37,6 +38,11 @@ public class Player : MonoBehaviour
 
     protected void Awake()
     {
+       
+    }
+
+    void Start()
+    {
         CameraRig = GameObject.Find("Camera Rig").GetComponent<OVRCameraRig>();
         Assert.IsNotNull(CameraRig, "CameraRig가 할당되어 있지 않습니다.");
 
@@ -54,11 +60,6 @@ public class Player : MonoBehaviour
         isGround = true;
     }
 
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         FindSelectObject();
@@ -81,6 +82,17 @@ public class Player : MonoBehaviour
         #endregion
     }
 
+    private void LateUpdate()
+    {
+        if (CameraRig)
+        {
+            Vector3 centerEyeLocalPos = CameraRig.centerEyeAnchor.localPosition;
+            Vector3 trackingSpacePos = CameraRig.trackingSpace.localPosition;
+
+            trackingSpacePos.y -= centerEyeLocalPos.y;
+            CameraRig.trackingSpace.localPosition = trackingSpacePos;
+        }
+    }
     private void ControllerLocomotion()
     {
         if (OVRManager.isHmdPresent && RightController)
