@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool    isGround = true;
 
+    [SerializeField]
+    private GameObject RightController;
 
     protected void Awake()
     {
@@ -53,7 +56,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -81,7 +83,12 @@ public class Player : MonoBehaviour
 
     private void ControllerLocomotion()
     {
-        if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
+        if (OVRManager.isHmdPresent && RightController)
+        {
+            Debug.Log("adsf");
+            Debug.DrawRay(RightController.transform.position, Vector3.forward * 100.5f, Color.blue);
+        }
+        else if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
             Vector2 vInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
             Vector3 vCoord = new Vector3(vInput.x, 0.0f, vInput.y);
