@@ -17,8 +17,8 @@ public class Player : PortalTraveller
     private Rigidbody           RigidBodyCom;
     private CapsuleCollider     CapsuleColliderCom;
 
+    public GameObject SelectObject;
     [SerializeField]
-    private GameObject  SelectObject;
     private Transform   SelectObjectTransformCom;
     private Vector3     SelectObjectOriginalScale;
     private float       SelectObjectInitialDistance;
