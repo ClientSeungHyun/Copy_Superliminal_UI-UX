@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : PortalTraveller
 {
     private OVRCameraRig        CameraRig;
 
@@ -36,6 +36,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject RightController;
 
+    public float yaw;
+    public float pitch;
+    float smoothYaw;
+    float smoothPitch;
+    Vector3 velocity;
+
     protected void Awake()
     {
        
@@ -58,6 +64,11 @@ public class Player : MonoBehaviour
 
         JumpPower = 1000.0f;
         isGround = true;
+
+        yaw = transform.eulerAngles.y;
+        pitch = CameraRig.centerEyeAnchor.transform.localEulerAngles.x;
+        smoothYaw = yaw;
+        smoothPitch = pitch;
     }
 
     void Update()
@@ -253,5 +264,17 @@ public class Player : MonoBehaviour
 
         // 디버그용
         Debug.DrawRay(CheckPosition, Vector3.down * 0.5f, isGround ? Color.green : Color.red);
+    }
+
+    public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
+    {
+        transform.position = pos;
+        Vector3 eulerRot = rot.eulerAngles;
+        float delta = Mathf.DeltaAngle(smoothYaw, eulerRot.y);
+        yaw += delta;
+        smoothYaw += delta;
+        transform.eulerAngles = Vector3.up * smoothYaw;
+        velocity = toPortal.TransformVector(fromPortal.InverseTransformVector(velocity));
+        Physics.SyncTransforms();
     }
 }
