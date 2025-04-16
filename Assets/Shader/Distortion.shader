@@ -3,9 +3,9 @@
     Properties
     {
         _MainTex("Main Texture", 2D) = "white" {}
-        _DistortionStrength("Distortion Strength", Range(0, 1)) = 0.1
-        _NoiseScale("Noise Scale", Float) = 10.0
-        _Speed("Noise Speed", Float) = 2.0
+        _DistortionStrength("Distortion Strength", Range(0, 1)) = 0.3
+        _NoiseScale("Noise Scale", Float) = 100.0
+        _Speed("Noise Speed", Float) = 0.0
     }
 
     SubShader
@@ -80,7 +80,7 @@
 
                 float time = _Time.y * _Speed;
 
-                float noise = gradientNoise(screenUV * _NoiseScale + time);
+                float noise = gradientNoise(screenUV * _NoiseScale );
 
                 float2 distortion = (noise - 0.5) * _DistortionStrength;
 

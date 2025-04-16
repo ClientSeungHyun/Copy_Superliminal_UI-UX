@@ -33,6 +33,6 @@ public class NoObjectDoor : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider != null)
-            Debug.Log("�浹");
+            Debug.Log("붙음");
     }
 }
