@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
         DragSelectObject();
 
         CheckGround();
+
     }
 
     private void FixedUpdate()
