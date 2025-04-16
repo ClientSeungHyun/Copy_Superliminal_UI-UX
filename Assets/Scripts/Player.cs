@@ -1,22 +1,24 @@
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : PortalTraveller
 {
     private OVRCameraRig        CameraRig;
+
     private Transform           TransformCom;
     private Rigidbody           RigidBodyCom;
     private CapsuleCollider     CapsuleColliderCom;
 
+    public GameObject SelectObject;
     [SerializeField]
-    private GameObject  SelectObject;
     private Transform   SelectObjectTransformCom;
     private Vector3     SelectObjectOriginalScale;
     private float       SelectObjectInitialDistance;
@@ -31,8 +33,21 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool    isGround = true;
 
+    [SerializeField]
+    private GameObject RightController;
+
+    public float yaw;
+    public float pitch;
+    float smoothYaw;
+    float smoothPitch;
+    Vector3 velocity;
 
     protected void Awake()
+    {
+       
+    }
+
+    void Start()
     {
         CameraRig = GameObject.Find("Camera Rig").GetComponent<OVRCameraRig>();
         Assert.IsNotNull(CameraRig, "CameraRig가 할당되어 있지 않습니다.");
@@ -49,14 +64,13 @@ public class Player : MonoBehaviour
 
         JumpPower = 1000.0f;
         isGround = true;
+
+        yaw = transform.eulerAngles.y;
+        pitch = CameraRig.centerEyeAnchor.transform.localEulerAngles.x;
+        smoothYaw = yaw;
+        smoothPitch = pitch;
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         FindSelectObject();
@@ -79,9 +93,25 @@ public class Player : MonoBehaviour
         #endregion
     }
 
+    private void LateUpdate()
+    {
+        if (CameraRig)
+        {
+            Vector3 centerEyeLocalPos = CameraRig.centerEyeAnchor.localPosition;
+            Vector3 trackingSpacePos = CameraRig.trackingSpace.localPosition;
+
+            trackingSpacePos.y -= centerEyeLocalPos.y;
+            CameraRig.trackingSpace.localPosition = trackingSpacePos;
+        }
+    }
     private void ControllerLocomotion()
     {
-        if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
+        if (OVRManager.isHmdPresent && RightController)
+        {
+            Debug.Log("adsf");
+            Debug.DrawRay(RightController.transform.position, Vector3.forward * 100.5f, Color.blue);
+        }
+        else if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
             Vector2 vInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
             Vector3 vCoord = new Vector3(vInput.x, 0.0f, vInput.y);
@@ -234,5 +264,17 @@ public class Player : MonoBehaviour
 
         // 디버그용
         Debug.DrawRay(CheckPosition, Vector3.down * 0.5f, isGround ? Color.green : Color.red);
+    }
+
+    public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
+    {
+        transform.position = pos;
+        Vector3 eulerRot = rot.eulerAngles;
+        float delta = Mathf.DeltaAngle(smoothYaw, eulerRot.y);
+        yaw += delta;
+        smoothYaw += delta;
+        transform.eulerAngles = Vector3.up * smoothYaw;
+        velocity = toPortal.TransformVector(fromPortal.InverseTransformVector(velocity));
+        Physics.SyncTransforms();
     }
 }
