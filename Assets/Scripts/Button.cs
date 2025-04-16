@@ -10,8 +10,8 @@ public class Button : MonoBehaviour
     private bool isCollisionExit = false;
     private float UnpressedTimer = 0.0f;
 
-    //테스트용
-    //public GameObject cube;
+    public GameObject cube;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,11 +40,10 @@ public class Button : MonoBehaviour
 
         }
         
-        //테스트용
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    cube.GetComponent<Transform>().position = new Vector3(FirstPosition.x, FirstPosition.y + 10.0f, FirstPosition.z);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            cube.GetComponent<Transform>().position = new Vector3(FirstPosition.x, FirstPosition.y + 10.0f, FirstPosition.z);
+        }
 
     }
 

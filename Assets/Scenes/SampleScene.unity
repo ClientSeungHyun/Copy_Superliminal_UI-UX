@@ -1239,8 +1239,9 @@ GameObject:
   m_Component:
   - component: {fileID: 188457374}
   - component: {fileID: 188457373}
+  - component: {fileID: 188457375}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1273,6 +1274,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &188457375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188457372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6becd3b7c06854d9137b067ba5e6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoaderCanvas: {fileID: 0}
+  ProgressBar: {fileID: 0}
 --- !u!1 &197578075
 GameObject:
   m_ObjectHideFlags: 0
@@ -9199,6 +9214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphicsObject: {fileID: 743157194}
   SelectObject: {fileID: 0}
+  SelectObjectTransformCom: {fileID: 0}
   MoveSpeed: 10
   MouseSensitivity: 10
   JumpPower: 1800

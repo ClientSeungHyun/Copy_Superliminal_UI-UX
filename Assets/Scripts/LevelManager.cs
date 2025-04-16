@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class LevelManager : Singleton<GameManager>
+public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private GameObject LoaderCanvas;
+    [SerializeField] private Canvas LoaderCanvas;
     [SerializeField] private Image ProgressBar;
+
+    public string NextSceneName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,12 +20,19 @@ public class LevelManager : Singleton<GameManager>
         Debug.Log("GameManager 생성됨!");
     }
 
+    public void FindProgress()
+    {
+        ProgressBar = GameObject.Find("ProgressBar").GetComponent<Image>();
+        LoaderCanvas = ProgressBar.GetComponentInParent<Canvas>();
+    }
+
     public async void LoadScene(string SceneName)
     {
+        NextSceneName = SceneName;
         var Scene = SceneManager.LoadSceneAsync(SceneName);
         Scene.allowSceneActivation = false;
 
-        LoaderCanvas.SetActive(true);
+        LoaderCanvas.gameObject.SetActive(true);
 
         do {
             await Task.Delay(100);
@@ -31,6 +40,6 @@ public class LevelManager : Singleton<GameManager>
         } while (Scene.progress < 0.9f);
 
         Scene.allowSceneActivation = true;
-        LoaderCanvas.SetActive(false);
+        LoaderCanvas.gameObject.SetActive(false);
     }
 }
