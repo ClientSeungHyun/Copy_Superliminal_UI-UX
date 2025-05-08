@@ -10,16 +10,15 @@ public class Button : MonoBehaviour
     private bool isCollisionExit = false;
     private float UnpressedTimer = 0.0f;
 
-    public GameObject cube;
+    //For Test
+   // public GameObject cube;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         MyTransform = this.GetComponent<Transform>();
         FirstPosition = MyTransform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPressed)
@@ -39,11 +38,12 @@ public class Button : MonoBehaviour
             }
 
         }
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            cube.GetComponent<Transform>().position = new Vector3(FirstPosition.x, FirstPosition.y + 10.0f, FirstPosition.z);
-        }
+
+        //For Test
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    cube.GetComponent<Transform>().position = new Vector3(FirstPosition.x, FirstPosition.y + 10.0f, FirstPosition.z);
+        //}
 
     }
 
