@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class raser : MonoBehaviour
 {
-    public LineRenderer laserLine; // ·¹ÀÌÀú ½Ã°¢È­¿ë
+    public LineRenderer laserLine; // ë ˆì´ì € ì‹œê°í™”ìš©
     public float laserDistance = 50f;
     public Transform trackingSpace;
     public GameObject RController;
+    public GameObject LeftController;
 
     void Start()
     {
@@ -21,31 +22,31 @@ public class raser : MonoBehaviour
 
     void FireLaser()
     {
-        // LeftControllerÀÇ À§Ä¡¿Í È¸Àü Á¤º¸ °¡Á®¿À±â
+        // LeftControllerì˜ ìœ„ì¹˜ì™€ íšŒì „ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
         Vector3 localPos = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
         Quaternion localRot = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
 
-        // TrackingSpace ±âÁØÀ¸·Î ¿ùµå ÁÂÇ¥·Î º¯È¯
+        // TrackingSpace ê¸°ì¤€ìœ¼ë¡œ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
         Vector3 worldPos = trackingSpace.TransformPoint(localPos);
         Vector3 forward = trackingSpace.TransformDirection(localRot * Vector3.forward);
         forward.Normalize();
 
-        // ·¹ÀÌÀú ½ÃÀÛ À§Ä¡¸¦ LeftControllerÀÇ À§Ä¡·Î ¼³Á¤
+        // ë ˆì´ì € ì‹œì‘ ìœ„ì¹˜ë¥¼ LeftControllerì˜ ìœ„ì¹˜ë¡œ ì„¤ì •
         laserLine.SetPosition(0, RController.transform.position);
 
-        // ·¹ÀÌÀú ¹ß»ç¿ë Ray ¼³Á¤
+        // ë ˆì´ì € ë°œì‚¬ìš© Ray ì„¤ì •
         Ray ray = new Ray(LeftController.transform.position, forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, laserDistance))
         {
-            // ·¹ÀÌÀú°¡ Ãæµ¹ÇÑ ÁöÁ¡±îÁöÀÇ À§Ä¡¸¦ ¼³Á¤
+            // ë ˆì´ì €ê°€ ì¶©ëŒí•œ ì§€ì ê¹Œì§€ì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •
             laserLine.SetPosition(1, hit.point);
 
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
             {
-                UnityEngine.Debug.Log("¿À¸¥ÂÊ °ËÁö ¹öÆ° ´­¸²!");
-                // Ãæµ¹ÇÑ °ÔÀÓ ¿ÀºêÁ§Æ® °¡Á®¿À±â
+                UnityEngine.Debug.Log("ì˜¤ë¥¸ìª½ ê²€ì§€ ë²„íŠ¼ ëˆŒë¦¼!");
+                // ì¶©ëŒí•œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ ê°€ì ¸ì˜¤ê¸°
                 GameObject hitObject = hit.collider.gameObject;
                 UnityEngine.Debug.Log("Hit object: " + hitObject.name);
 
@@ -54,7 +55,7 @@ public class raser : MonoBehaviour
         }
         else
         {
-            // Ãæµ¹ÇÏÁö ¾ÊÀº °æ¿ì ·¹ÀÌÀú°¡ ÃÖ´ë °Å¸®±îÁö °è¼Ó °¡µµ·Ï ¼³Á¤
+            // ì¶©ëŒí•˜ì§€ ì•Šì€ ê²½ìš° ë ˆì´ì €ê°€ ìµœëŒ€ ê±°ë¦¬ê¹Œì§€ ê³„ì† ê°€ë„ë¡ ì„¤ì •
             laserLine.SetPosition(1, LeftController.transform.position + forward * laserDistance);
         }
     }
