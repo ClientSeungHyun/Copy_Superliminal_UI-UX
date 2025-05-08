@@ -3075,6 +3075,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 13217344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &571489364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4519461025698783881, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+  m_PrefabInstance: {fileID: 1363332859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &574710252
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,7 +4176,7 @@ MonoBehaviour:
   laserLine: {fileID: 311942880}
   laserDistance: 50
   trackingSpace: {fileID: 1206769778}
-  LeftController: {fileID: 1004639593}
+  LeftController: {fileID: 571489364}
 --- !u!1 &698554039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5548,11 +5553,6 @@ Transform:
   - {fileID: 885618825}
   m_Father: {fileID: 2081436560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1004639593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8104814095975130638, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
-  m_PrefabInstance: {fileID: 1363332859}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009799818
 GameObject:
   m_ObjectHideFlags: 0
