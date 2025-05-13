@@ -22,13 +22,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            ChangeLevel("Map");
+            SceneTransitionManager.Instance.ChangeLevel("Map");
         }
-    }
-
-    void ChangeLevel(string SceneName)
-    {
-        SceneManager.LoadScene("LoadingScene");
-        LevelManager.Instance.NextSceneName = SceneName;
     }
 }

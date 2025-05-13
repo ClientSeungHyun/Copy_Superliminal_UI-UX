@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// 싱글통 매크로
+// 싱글톤 매크로
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;

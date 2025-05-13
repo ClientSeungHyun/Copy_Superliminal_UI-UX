@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
 
     public void SelectStartGameBtn()
     {
-        //Change SCrmel;
+        SceneTransitionManager.Instance.ChangeLevel("Map");
     }
 
     public void SelectOptionBtn()
