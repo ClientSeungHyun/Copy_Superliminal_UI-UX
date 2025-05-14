@@ -5652,6 +5652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combined Mesh (root_ scene) 2 #3604
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e76cd39189f90c440b0f144a0d33b921, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 977296170509898403, guid: e76cd39189f90c440b0f144a0d33b921, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -8667,7 +8671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &841363901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17059,7 +17063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1553533647
 AudioListener:
   m_ObjectHideFlags: 0
@@ -17127,8 +17131,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553533646}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.059961367, y: -0.008983606, z: 0.00053983356, w: 0.9981602}
-  m_LocalPosition: {x: -0.08604151, y: 0.9990363, z: -9.045095}
+  m_LocalRotation: {x: 0.0067512617, y: -0.0022508185, z: 0.000015167752, w: 0.9999747}
+  m_LocalPosition: {x: 0.066892326, y: -0.9055307, z: -7.2364864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
