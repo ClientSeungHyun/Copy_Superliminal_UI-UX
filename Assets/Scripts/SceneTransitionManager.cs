@@ -23,6 +23,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         if (fadeImage != null)
         {
             fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            fadeImage.gameObject.SetActive(false);
         }
         else
         {
@@ -33,27 +34,29 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
     public void ChangeLevel(string sceneName)
     {
         nextSceneName = sceneName;
+        fadeImage.gameObject.SetActive(true);
+
         StartCoroutine(SceneLoadRoutine());
     }
 
     private IEnumerator SceneLoadRoutine()
     {
-        // 1. 페이드 아웃
         yield return StartCoroutine(Fade(0, 1));
 
-        // 2. 로딩 씬 로드
         SceneManager.LoadScene("LoadingScene");
     }
 
     public void StartFadeIn(float Duration = 1f)
     {
         fadeDuration = Duration;
+        fadeImage.gameObject.SetActive(true);
         StartCoroutine(Fade(1, 0));
     }
 
     public void StartFadeOut(float Duration = 1f)
     {
         fadeDuration = Duration;
+        fadeImage.gameObject.SetActive(true);
         StartCoroutine(Fade(0, 1));
     }
 
@@ -87,6 +90,9 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
             Color finalColor = fadeImage.color;
             finalColor.a = end;
             fadeImage.color = finalColor;
+
+            if(end == 0)
+                fadeImage.gameObject.SetActive(false);
         }
     }
 

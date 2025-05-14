@@ -1,18 +1,21 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadingSceneController : MonoBehaviour
 {
-    [SerializeField] private Canvas loaderCanvas;
     [SerializeField] private Image progressBar;
+    private TextMeshProUGUI loadingTmp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         progressBar = GameObject.Find("ProgressBar").GetComponent<Image>();
         progressBar.fillAmount = 0f;
+
+        loadingTmp = GameObject.Find("LoadingText").GetComponent<TextMeshProUGUI>();
 
         if (SceneTransitionManager.Instance == null)
         {
@@ -41,10 +44,15 @@ public class LoadingSceneController : MonoBehaviour
 
         float unsacledTimer1 = 0.0f;
         float unsacledTimer2 = 0.0f;
+        float textTimer = 1f;
 
         while (!asyncOper.isDone)
         {
             yield return null;
+
+            textTimer += Time.unscaledDeltaTime * 2f;
+            if (textTimer >= 4f)
+                textTimer = 0f;
 
             if (asyncOper.progress < 0.9f || loadingPercent < 89f)
             {
@@ -60,9 +68,8 @@ public class LoadingSceneController : MonoBehaviour
                 unsacledTimer2 += Time.unscaledDeltaTime;
 
                 loadingPercent = 89f;
-                loadingPercent = Mathf.Lerp(loadingPercent, 100f, unsacledTimer2);
+                loadingPercent = Mathf.Lerp(loadingPercent, 100f, unsacledTimer2 * 0.7f);
 
-                // loadingPercent가 100이라면 씬 전환
                 if (loadingPercent == 100f)
                 {
                     SceneTransitionManager.Instance.StartFadeIn(3f);
@@ -71,6 +78,15 @@ public class LoadingSceneController : MonoBehaviour
             }
 
             progressBar.fillAmount = loadingPercent * 0.01f;
+
+            string loadingText = "Loading";
+            for (int i = 1; i <= (int)textTimer; ++i) 
+            {
+                loadingText += ".";
+            }
+            loadingTmp.text = loadingText;
+            
+
         }
     }
 
