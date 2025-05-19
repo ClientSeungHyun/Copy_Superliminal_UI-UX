@@ -2096,11 +2096,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290c63c66b538f648a1c442137906299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraphicsObject: {fileID: 0}
   SelectObject: {fileID: 0}
+  SelectObjectTransformCom: {fileID: 0}
   MoveSpeed: 10
   MouseSensitivity: 10
   JumpPower: 1800
   isGround: 1
+  RightController: {fileID: 0}
+  yaw: 0
+  pitch: 0
 --- !u!1 &397112328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,6 +4181,7 @@ MonoBehaviour:
   laserLine: {fileID: 311942880}
   laserDistance: 50
   trackingSpace: {fileID: 1206769778}
+  RController: {fileID: 0}
   LeftController: {fileID: 571489364}
 --- !u!1 &698554039
 GameObject:
@@ -5515,6 +5521,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1958736500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &992558982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1820161446294546683, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+  m_PrefabInstance: {fileID: 1363332859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &995996288
 GameObject:
   m_ObjectHideFlags: 0
@@ -11776,6 +11787,7 @@ GameObject:
   - component: {fileID: 2078407632}
   - component: {fileID: 2078407631}
   - component: {fileID: 2078407638}
+  - component: {fileID: 2078407639}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -11966,6 +11978,22 @@ MonoBehaviour:
   _selectSurface: {fileID: 0}
   _movementProvider: {fileID: 0}
   _tiebreakerScore: 0
+--- !u!114 &2078407639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078407630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7de434eaa930f4d9f4ad06321476ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserLine: {fileID: 311942880}
+  laserDistance: 50
+  trackingSpace: {fileID: 1206769778}
+  RController: {fileID: 992558982}
 --- !u!1 &2081436559
 GameObject:
   m_ObjectHideFlags: 0
