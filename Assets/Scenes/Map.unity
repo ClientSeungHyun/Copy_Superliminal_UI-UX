@@ -745,9 +745,10 @@ GameObject:
   - component: {fileID: 10911636}
   - component: {fileID: 10911638}
   - component: {fileID: 10911637}
+  - component: {fileID: 10911639}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -820,6 +821,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10911635}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
+--- !u!114 &10911639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10911635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12bc628e3ff130340b0db045aac49e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1 &11182518
 GameObject:
   m_ObjectHideFlags: 0
@@ -16017,7 +16032,7 @@ GameObject:
   - component: {fileID: 323556223}
   m_Layer: 0
   m_Name: Toy_Block_01
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16447,7 +16462,7 @@ GameObject:
   - component: {fileID: 333816531}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16619,7 +16634,7 @@ GameObject:
   - component: {fileID: 338003784}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23214,9 +23229,10 @@ GameObject:
   - component: {fileID: 475230653}
   - component: {fileID: 475230655}
   - component: {fileID: 475230654}
+  - component: {fileID: 475230656}
   m_Layer: 0
   m_Name: Door_Button_001
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23289,6 +23305,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475230652}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
+--- !u!82 &475230656
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475230652}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  m_Resource: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &476667655
 GameObject:
   m_ObjectHideFlags: 0
@@ -30848,7 +30961,7 @@ GameObject:
   - component: {fileID: 645514747}
   m_Layer: 0
   m_Name: Toy_Block
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32128,7 +32241,7 @@ GameObject:
   - component: {fileID: 661072974}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44756,6 +44869,160 @@ Transform:
   - {fileID: 657303736}
   m_Father: {fileID: 1227856200}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &904464996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904464999}
+  - component: {fileID: 904464998}
+  - component: {fileID: 904464997}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &904464997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904464996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7768100c1bbcd5d49baf8e5685a3d042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagAudioList:
+  - tagName: Door
+    clip: {fileID: 8300000, guid: 491cc53f2abafe04cba9b9ab1aeb8efe, type: 3}
+  - tagName: Blocked
+    clip: {fileID: 8300000, guid: 1aa8261ed2c7b9a499c227c6f3ea5578, type: 3}
+  - tagName: Button
+    clip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  - tagName: Pickup
+    clip: {fileID: 8300000, guid: 7bf82172628955448be504b489126497, type: 3}
+  - tagName: Pickdown
+    clip: {fileID: 8300000, guid: 43f6e76fd658e4145b21fd51f151191c, type: 3}
+  audioSource: {fileID: 0}
+--- !u!82 &904464998
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904464996}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &904464999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904464996}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906511162
 GameObject:
   m_ObjectHideFlags: 0
@@ -47828,7 +48095,7 @@ GameObject:
   - component: {fileID: 978369129}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55906,7 +56173,7 @@ GameObject:
   - component: {fileID: 1135024360}
   m_Layer: 0
   m_Name: Toy_Block_04
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58982,7 +59249,7 @@ GameObject:
   - component: {fileID: 1192520573}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60989,7 +61256,7 @@ GameObject:
   - component: {fileID: 1225452367}
   m_Layer: 0
   m_Name: Toy_Block
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63976,9 +64243,10 @@ GameObject:
   - component: {fileID: 1279848663}
   - component: {fileID: 1279848665}
   - component: {fileID: 1279848664}
+  - component: {fileID: 1279848666}
   m_Layer: 0
   m_Name: Door_Button_002
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64051,6 +64319,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279848662}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
+--- !u!82 &1279848666
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279848662}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  m_Resource: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1281516238
 GameObject:
   m_ObjectHideFlags: 0
@@ -64064,7 +64429,7 @@ GameObject:
   - component: {fileID: 1281516240}
   m_Layer: 0
   m_Name: Toy_Block_01
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87041,7 +87406,7 @@ GameObject:
   - component: {fileID: 1759730773}
   m_Layer: 0
   m_Name: Toy_Block_03
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91655,7 +92020,7 @@ GameObject:
   - component: {fileID: 1842524480}
   m_Layer: 0
   m_Name: Toy_Block_05
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95108,7 +95473,7 @@ GameObject:
   - component: {fileID: 1911307227}
   m_Layer: 0
   m_Name: Toy_Block_06
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96354,12 +96719,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290c63c66b538f648a1c442137906299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraphicsObject: {fileID: 0}
   SelectObject: {fileID: 0}
+  SelectObjectTransformCom: {fileID: 0}
   MoveSpeed: 10
   MouseSensitivity: 10
   JumpPower: 1800
   isGround: 1
   RightController: {fileID: 1066903343}
+  yaw: 0
+  pitch: 0
 --- !u!54 &1930934443
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96484,7 +96853,7 @@ GameObject:
   - component: {fileID: 1931346331}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100275,7 +100644,7 @@ GameObject:
   - component: {fileID: 2017562727}
   m_Layer: 0
   m_Name: Toy_Block_02
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101179,7 +101548,7 @@ GameObject:
   - component: {fileID: 2035678151}
   m_Layer: 0
   m_Name: Toy_Block
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107129,7 +107498,7 @@ GameObject:
   - component: {fileID: 4116251158484688079}
   m_Layer: 0
   m_Name: Chess_Rook
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107155,7 +107524,7 @@ GameObject:
   - component: {fileID: 6902001283905734608}
   m_Layer: 0
   m_Name: Chess_Board
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108334,7 +108703,7 @@ GameObject:
   - component: {fileID: 8182758921058234087}
   m_Layer: 0
   m_Name: Toy_Block_01
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108526,7 +108895,7 @@ GameObject:
   - component: {fileID: 5704265654893641539}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109382,7 +109751,7 @@ GameObject:
   - component: {fileID: 8878952385536085108}
   m_Layer: 0
   m_Name: Chess_Common
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110080,7 +110449,7 @@ GameObject:
   - component: {fileID: 1759246891274842180}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111451,7 +111820,7 @@ GameObject:
   - component: {fileID: 8405244870456161906}
   m_Layer: 0
   m_Name: Cheese
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113255,7 +113624,7 @@ GameObject:
   - component: {fileID: 7633590570283737083}
   m_Layer: 0
   m_Name: Chess_Piece_Rook_Common_Prop_0
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114516,7 +114885,7 @@ GameObject:
   - component: {fileID: 528903591377158984}
   m_Layer: 0
   m_Name: Chess_Board
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114534,7 +114903,7 @@ GameObject:
   - component: {fileID: 3120657973798845580}
   m_Layer: 0
   m_Name: Chess_King
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114974,7 +115343,7 @@ GameObject:
   - component: {fileID: 7356817410231493826}
   m_Layer: 0
   m_Name: Door_Sign_001_Chamber_Gameplay
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116763,4 +117132,5 @@ SceneRoots:
   - {fileID: 975751848}
   - {fileID: 2089237378}
   - {fileID: 1907691488}
+  - {fileID: 904464999}
   - {fileID: 203844873}

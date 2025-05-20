@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Pickup
+  - Button
+  - Door
+  - Blocked
   layers:
   - Default
   - TransparentFX
