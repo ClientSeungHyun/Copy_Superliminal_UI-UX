@@ -25,7 +25,7 @@ public class NoObjectDoor : MonoBehaviour
         }
         else
         {
-            MyMat.SetFloat("_Scale", 4);
+            MyMat.SetFloat("_Scale", 2);
             MyCollider.isTrigger = true;
         }
     }
