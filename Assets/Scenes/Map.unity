@@ -830,11 +830,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 10911635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bc628e3ff130340b0db045aac49e79, type: 3}
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
-  audioSource: {fileID: 0}
+  actionName: 
+  useTrigger: 0
 --- !u!1 &11182518
 GameObject:
   m_ObjectHideFlags: 0
@@ -16030,6 +16030,7 @@ GameObject:
   - component: {fileID: 323556222}
   - component: {fileID: 323556224}
   - component: {fileID: 323556223}
+  - component: {fileID: 323556225}
   m_Layer: 0
   m_Name: Toy_Block_01
   m_TagString: Pickup
@@ -16105,6 +16106,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323556221}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &323556225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323556221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &326028566
 GameObject:
   m_ObjectHideFlags: 0
@@ -16460,6 +16475,7 @@ GameObject:
   - component: {fileID: 333816530}
   - component: {fileID: 333816532}
   - component: {fileID: 333816531}
+  - component: {fileID: 333816533}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
   m_TagString: Pickup
@@ -16535,6 +16551,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333816529}
   m_Mesh: {fileID: -3407396599239278020, guid: 6b1590005d8ec5d45ae8a97a383426a0, type: 3}
+--- !u!114 &333816533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333816529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &337823513
 GameObject:
   m_ObjectHideFlags: 0
@@ -16632,6 +16662,7 @@ GameObject:
   - component: {fileID: 338003783}
   - component: {fileID: 338003785}
   - component: {fileID: 338003784}
+  - component: {fileID: 338003786}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
   m_TagString: Button
@@ -16707,6 +16738,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338003782}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
+--- !u!114 &338003786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338003782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  useTrigger: 0
 --- !u!1 &340297891
 GameObject:
   m_ObjectHideFlags: 0
@@ -23305,103 +23350,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475230652}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
---- !u!82 &475230656
-AudioSource:
+--- !u!114 &475230656
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475230652}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
-  m_Resource: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  useTrigger: 0
 --- !u!1 &476667655
 GameObject:
   m_ObjectHideFlags: 0
@@ -30959,6 +30921,7 @@ GameObject:
   - component: {fileID: 645514746}
   - component: {fileID: 645514748}
   - component: {fileID: 645514747}
+  - component: {fileID: 645514749}
   m_Layer: 0
   m_Name: Toy_Block
   m_TagString: Pickup
@@ -31034,6 +30997,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645514745}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &645514749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645514745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &645850883
 GameObject:
   m_ObjectHideFlags: 0
@@ -32239,6 +32216,7 @@ GameObject:
   - component: {fileID: 661072973}
   - component: {fileID: 661072975}
   - component: {fileID: 661072974}
+  - component: {fileID: 661072976}
   m_Layer: 0
   m_Name: Door_Button_002_Button_Button_Chamber_0
   m_TagString: Button
@@ -32314,6 +32292,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661072972}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
+--- !u!114 &661072976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661072972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  useTrigger: 0
 --- !u!1 &661795938
 GameObject:
   m_ObjectHideFlags: 0
@@ -44901,14 +44893,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagAudioList:
   - tagName: Door
+    actionName: 
     clip: {fileID: 8300000, guid: 491cc53f2abafe04cba9b9ab1aeb8efe, type: 3}
   - tagName: Blocked
+    actionName: 
     clip: {fileID: 8300000, guid: 1aa8261ed2c7b9a499c227c6f3ea5578, type: 3}
   - tagName: Button
+    actionName: 
     clip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
   - tagName: Pickup
+    actionName: grab
     clip: {fileID: 8300000, guid: 7bf82172628955448be504b489126497, type: 3}
-  - tagName: Pickdown
+  - tagName: Pickup
+    actionName: release
     clip: {fileID: 8300000, guid: 43f6e76fd658e4145b21fd51f151191c, type: 3}
   audioSource: {fileID: 0}
 --- !u!82 &904464998
@@ -48093,6 +48090,7 @@ GameObject:
   - component: {fileID: 978369128}
   - component: {fileID: 978369130}
   - component: {fileID: 978369129}
+  - component: {fileID: 978369131}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
   m_TagString: Pickup
@@ -48168,6 +48166,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978369127}
   m_Mesh: {fileID: -3407396599239278020, guid: 6b1590005d8ec5d45ae8a97a383426a0, type: 3}
+--- !u!114 &978369131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978369127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &979112525
 GameObject:
   m_ObjectHideFlags: 0
@@ -56171,6 +56183,7 @@ GameObject:
   - component: {fileID: 1135024359}
   - component: {fileID: 1135024361}
   - component: {fileID: 1135024360}
+  - component: {fileID: 1135024362}
   m_Layer: 0
   m_Name: Toy_Block_04
   m_TagString: Pickup
@@ -56246,6 +56259,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135024358}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1135024362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135024358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1138201886
 GameObject:
   m_ObjectHideFlags: 0
@@ -59247,6 +59274,7 @@ GameObject:
   - component: {fileID: 1192520572}
   - component: {fileID: 1192520574}
   - component: {fileID: 1192520573}
+  - component: {fileID: 1192520575}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
   m_TagString: Pickup
@@ -59322,6 +59350,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192520571}
   m_Mesh: {fileID: -3407396599239278020, guid: 6b1590005d8ec5d45ae8a97a383426a0, type: 3}
+--- !u!114 &1192520575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192520571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1193066509
 GameObject:
   m_ObjectHideFlags: 0
@@ -61254,6 +61296,7 @@ GameObject:
   - component: {fileID: 1225452366}
   - component: {fileID: 1225452368}
   - component: {fileID: 1225452367}
+  - component: {fileID: 1225452369}
   m_Layer: 0
   m_Name: Toy_Block
   m_TagString: Pickup
@@ -61329,6 +61372,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225452365}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1225452369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225452365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1225872922
 GameObject:
   m_ObjectHideFlags: 0
@@ -64319,103 +64376,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279848662}
   m_Mesh: {fileID: 4031143381789464472, guid: 60d6a98cd08bdbd4cad31c5c848ca6ae, type: 3}
---- !u!82 &1279848666
-AudioSource:
+--- !u!114 &1279848666
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279848662}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
-  m_Resource: {fileID: 8300000, guid: 60539c757f33d124b82dac3fc1f7ae58, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: 
+  useTrigger: 0
 --- !u!1 &1281516238
 GameObject:
   m_ObjectHideFlags: 0
@@ -64427,6 +64401,7 @@ GameObject:
   - component: {fileID: 1281516239}
   - component: {fileID: 1281516241}
   - component: {fileID: 1281516240}
+  - component: {fileID: 1281516242}
   m_Layer: 0
   m_Name: Toy_Block_01
   m_TagString: Pickup
@@ -64502,6 +64477,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281516238}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1281516242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281516238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1282579260
 GameObject:
   m_ObjectHideFlags: 0
@@ -87404,6 +87393,7 @@ GameObject:
   - component: {fileID: 1759730772}
   - component: {fileID: 1759730774}
   - component: {fileID: 1759730773}
+  - component: {fileID: 1759730775}
   m_Layer: 0
   m_Name: Toy_Block_03
   m_TagString: Pickup
@@ -87479,6 +87469,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759730771}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1759730775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759730771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1763254391
 GameObject:
   m_ObjectHideFlags: 0
@@ -92018,6 +92022,7 @@ GameObject:
   - component: {fileID: 1842524479}
   - component: {fileID: 1842524481}
   - component: {fileID: 1842524480}
+  - component: {fileID: 1842524482}
   m_Layer: 0
   m_Name: Toy_Block_05
   m_TagString: Pickup
@@ -92093,6 +92098,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842524478}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1842524482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842524478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1845462802
 GameObject:
   m_ObjectHideFlags: 0
@@ -95471,6 +95490,7 @@ GameObject:
   - component: {fileID: 1911307226}
   - component: {fileID: 1911307228}
   - component: {fileID: 1911307227}
+  - component: {fileID: 1911307229}
   m_Layer: 0
   m_Name: Toy_Block_06
   m_TagString: Pickup
@@ -95546,6 +95566,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911307225}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &1911307229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911307225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1911359258
 GameObject:
   m_ObjectHideFlags: 0
@@ -96851,6 +96885,7 @@ GameObject:
   - component: {fileID: 1931346330}
   - component: {fileID: 1931346332}
   - component: {fileID: 1931346331}
+  - component: {fileID: 1931346333}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
   m_TagString: Pickup
@@ -96926,6 +96961,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931346329}
   m_Mesh: {fileID: -3407396599239278020, guid: 6b1590005d8ec5d45ae8a97a383426a0, type: 3}
+--- !u!114 &1931346333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931346329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &1931405952
 GameObject:
   m_ObjectHideFlags: 0
@@ -100642,6 +100691,7 @@ GameObject:
   - component: {fileID: 2017562726}
   - component: {fileID: 2017562728}
   - component: {fileID: 2017562727}
+  - component: {fileID: 2017562729}
   m_Layer: 0
   m_Name: Toy_Block_02
   m_TagString: Pickup
@@ -100717,6 +100767,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017562725}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &2017562729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017562725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &2018114124
 GameObject:
   m_ObjectHideFlags: 0
@@ -101546,6 +101610,7 @@ GameObject:
   - component: {fileID: 2035678150}
   - component: {fileID: 2035678152}
   - component: {fileID: 2035678151}
+  - component: {fileID: 2035678153}
   m_Layer: 0
   m_Name: Toy_Block
   m_TagString: Pickup
@@ -101621,6 +101686,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035678149}
   m_Mesh: {fileID: -3422901784737937134, guid: d5a4d88bd19f32d4489bb55ad1ae21c9, type: 3}
+--- !u!114 &2035678153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035678149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!1 &2036003863
 GameObject:
   m_ObjectHideFlags: 0
@@ -107496,6 +107575,7 @@ GameObject:
   - component: {fileID: 8150998832630789106}
   - component: {fileID: 925117893533837421}
   - component: {fileID: 4116251158484688079}
+  - component: {fileID: 8150998832630789107}
   m_Layer: 0
   m_Name: Chess_Rook
   m_TagString: Pickup
@@ -107522,6 +107602,7 @@ GameObject:
   - component: {fileID: 5845034387783949126}
   - component: {fileID: 2500672009629175957}
   - component: {fileID: 6902001283905734608}
+  - component: {fileID: 6902001283905734609}
   m_Layer: 0
   m_Name: Chess_Board
   m_TagString: Pickup
@@ -108701,6 +108782,7 @@ GameObject:
   - component: {fileID: 1413994007703332026}
   - component: {fileID: 6933573189921490018}
   - component: {fileID: 8182758921058234087}
+  - component: {fileID: 8182758921058234088}
   m_Layer: 0
   m_Name: Toy_Block_01
   m_TagString: Pickup
@@ -108893,6 +108975,7 @@ GameObject:
   - component: {fileID: 2969181139952954595}
   - component: {fileID: 4471324413122320219}
   - component: {fileID: 5704265654893641539}
+  - component: {fileID: 5704265654893641540}
   m_Layer: 0
   m_Name: Chess_Piece_Common_0
   m_TagString: Pickup
@@ -109749,6 +109832,7 @@ GameObject:
   - component: {fileID: 2100183487066038228}
   - component: {fileID: 728644843674870892}
   - component: {fileID: 8878952385536085108}
+  - component: {fileID: 8878952385536085109}
   m_Layer: 0
   m_Name: Chess_Common
   m_TagString: Pickup
@@ -111818,6 +111902,7 @@ GameObject:
   - component: {fileID: 5077238153745710345}
   - component: {fileID: 2763804512160659118}
   - component: {fileID: 8405244870456161906}
+  - component: {fileID: 8405244870456161907}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Pickup
@@ -113225,6 +113310,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5704265654893641540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520979567088790529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!4 &5725411838167313894
 Transform:
   m_ObjectHideFlags: 0
@@ -113622,6 +113721,7 @@ GameObject:
   - component: {fileID: 2444892695325929670}
   - component: {fileID: 6640143555282905945}
   - component: {fileID: 7633590570283737083}
+  - component: {fileID: 7633590570283737084}
   m_Layer: 0
   m_Name: Chess_Piece_Rook_Common_Prop_0
   m_TagString: Pickup
@@ -114312,6 +114412,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6902001283905734609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373473191443742681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!4 &6907217531833943858
 Transform:
   m_ObjectHideFlags: 0
@@ -114901,6 +115015,7 @@ GameObject:
   - component: {fileID: 8204882341511003595}
   - component: {fileID: 3778785431213820454}
   - component: {fileID: 3120657973798845580}
+  - component: {fileID: 8204882341511003596}
   m_Layer: 0
   m_Name: Chess_King
   m_TagString: Pickup
@@ -115036,6 +115151,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7633590570283737084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078060398326720640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!23 &7635100667969639999
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115539,6 +115668,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 925861808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8150998832630789107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335994302665567156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!33 &8159101632890524786
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115652,6 +115795,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8182758921058234088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478749843204130391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!23 &8191573380256011326
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115712,6 +115869,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 925861808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8204882341511003596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530221676179536891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!4 &8211976248194528974
 Transform:
   m_ObjectHideFlags: 0
@@ -116197,6 +116368,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8405244870456161907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281372605558360411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!4 &8446272053730047988
 Transform:
   m_ObjectHideFlags: 0
@@ -116803,6 +116988,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8878952385536085109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380827062768066358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5466cba4ac1e814dad54b85762417d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: grab
+  useTrigger: 1
 --- !u!23 &8893810546833046021
 MeshRenderer:
   m_ObjectHideFlags: 0

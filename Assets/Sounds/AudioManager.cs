@@ -9,13 +9,14 @@ public class AudioManager : MonoBehaviour
     public class TaggedAudio
     {
         public string tagName;
+        public string actionName; // 예: "grab", "release"
         public AudioClip clip;
     }
 
     public List<TaggedAudio> tagAudioList;
     public AudioSource audioSource;
 
-    private Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
+    private Dictionary<string, Dictionary<string, AudioClip>> audioDict = new();
 
     void Awake()
     {
@@ -25,19 +26,23 @@ public class AudioManager : MonoBehaviour
         foreach (var item in tagAudioList)
         {
             if (!audioDict.ContainsKey(item.tagName))
-                audioDict.Add(item.tagName, item.clip);
+                audioDict[item.tagName] = new Dictionary<string, AudioClip>();
+
+            if (!audioDict[item.tagName].ContainsKey(item.actionName))
+                audioDict[item.tagName][item.actionName] = item.clip;
         }
     }
 
-    public void PlaySoundForTag(string tag)
+    public void PlaySoundForTag(string tag, string action)
     {
-        if (audioDict.ContainsKey(tag))
+        if (audioDict.ContainsKey(tag) && audioDict[tag].ContainsKey(action))
         {
-            audioSource.PlayOneShot(audioDict[tag]);
+            audioSource.PlayOneShot(audioDict[tag][action]);
         }
         else
         {
-            Debug.LogWarning($"[AudioManager] 사운드 없음: 태그 {tag}");
+            Debug.LogWarning($"[AudioManager] 사운드 없음: 태그 {tag}, 액션 {action}");
         }
     }
 }
+
