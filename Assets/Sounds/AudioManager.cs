@@ -6,43 +6,57 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [System.Serializable]
-    public class TaggedAudio
+    public class TagActionClip
     {
-        public string tagName;
-        public string actionName; // ��: "grab", "release"
+        public string tag;
+        public string action;
         public AudioClip clip;
     }
 
-    public List<TaggedAudio> tagAudioList;
+    [Header("Tag + Action 매핑 리스트")]
+    public List<TagActionClip> tagActionClips;
+
+    [Header("재생용 AudioSource")]
     public AudioSource audioSource;
 
-    private Dictionary<string, Dictionary<string, AudioClip>> audioDict = new();
+    private Dictionary<string, Dictionary<string, AudioClip>> soundMap;
 
     void Awake()
     {
+        // 싱글톤
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        foreach (var item in tagAudioList)
-        {
-            if (!audioDict.ContainsKey(item.tagName))
-                audioDict[item.tagName] = new Dictionary<string, AudioClip>();
+        BuildSoundMap();
+    }
 
-            if (!audioDict[item.tagName].ContainsKey(item.actionName))
-                audioDict[item.tagName][item.actionName] = item.clip;
+    // 리스트를 Dictionary로 변환
+    void BuildSoundMap()
+    {
+        soundMap = new Dictionary<string, Dictionary<string, AudioClip>>();
+
+        foreach (var entry in tagActionClips)
+        {
+            if (!soundMap.ContainsKey(entry.tag))
+                soundMap[entry.tag] = new Dictionary<string, AudioClip>();
+
+            if (!soundMap[entry.tag].ContainsKey(entry.action))
+                soundMap[entry.tag][entry.action] = entry.clip;
         }
     }
 
-    public void PlaySoundForTag(string tag, string action)
+    // 외부에서 호출하는 메서드
+    public void PlaySound(GameObject gameObject, string action)
     {
-        if (audioDict.ContainsKey(tag) && audioDict[tag].ContainsKey(action))
+        if (soundMap.TryGetValue(tag, out var actionDict))
         {
-            audioSource.PlayOneShot(audioDict[tag][action]);
+            if (actionDict.TryGetValue(action, out var clip))
+            {
+                audioSource.PlayOneShot(clip);
+                return;
+            }
         }
-        else
-        {
-            Debug.LogWarning($"[AudioManager] ���� ����: �±� {tag}, �׼� {action}");
-        }
+
+        Debug.LogWarning($"[AudioManager] 사운드를 찾을 수 없음 - 태그: {gameObject.tag}, 액션: {action}");
     }
 }
-
