@@ -4,10 +4,9 @@ using UnityEngine;
 public class raser : MonoBehaviour
 {
     public LineRenderer laserLine; // 레이저 시각화용
-    public float laserDistance = 50f;
+    public float laserDistance = 100f;
     public Transform trackingSpace;
     public GameObject RController;
-    public GameObject LeftController;
 
     void Start()
     {
@@ -35,7 +34,7 @@ public class raser : MonoBehaviour
         laserLine.SetPosition(0, RController.transform.position);
 
         // 레이저 발사용 Ray 설정
-        Ray ray = new Ray(LeftController.transform.position, forward);
+        Ray ray = new Ray(RController.transform.position, forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, laserDistance))
@@ -56,7 +55,7 @@ public class raser : MonoBehaviour
         else
         {
             // 충돌하지 않은 경우 레이저가 최대 거리까지 계속 가도록 설정
-            laserLine.SetPosition(1, LeftController.transform.position + forward * laserDistance);
+            laserLine.SetPosition(1, RController.transform.position + forward * laserDistance);
         }
     }
 }

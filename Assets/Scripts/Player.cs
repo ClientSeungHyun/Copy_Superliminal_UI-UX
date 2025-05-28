@@ -73,8 +73,8 @@ public class Player : PortalTraveller
 
     void Update()
     {
-        FindSelectObject();
-        DragSelectObject();
+        //FindSelectObject();
+        //DragSelectObject();
 
         CheckGround();
 
@@ -96,15 +96,9 @@ public class Player : PortalTraveller
 
     private void LateUpdate()
     {
-        if (CameraRig)
-        {
-            Vector3 centerEyeLocalPos = CameraRig.centerEyeAnchor.localPosition;
-            Vector3 trackingSpacePos = CameraRig.trackingSpace.localPosition;
 
-            trackingSpacePos.y -= centerEyeLocalPos.y;
-            CameraRig.trackingSpace.localPosition = trackingSpacePos;
-        }
     }
+
     private void ControllerLocomotion()
     {
         if (OVRManager.isHmdPresent && RightController)
@@ -112,7 +106,8 @@ public class Player : PortalTraveller
             Debug.Log("adsf");
             Debug.DrawRay(RightController.transform.position, Vector3.forward * 100.5f, Color.blue);
         }
-        else if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
+        
+        if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
             Vector2 vInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
             Vector3 vCoord = new Vector3(vInput.x, 0.0f, vInput.y);
