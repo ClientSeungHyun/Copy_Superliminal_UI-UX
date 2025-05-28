@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -18,6 +18,7 @@ public class Portal : MonoBehaviour
     RenderTexture ViewTexture;
     Camera PortalCamera;
     Camera PlayerCamera;
+    public Camera PlayerCameraLeft;
     Material FirstRecursionMat;
     List<PortalTraveller> TrackedTravellers;
     MeshFilter ScreenMeshFilter;
@@ -52,10 +53,10 @@ public class Portal : MonoBehaviour
 
         CreateViewTexture();
 
-        PortalCamera.projectionMatrix = PlayerCamera.projectionMatrix;
+        PortalCamera.projectionMatrix = PlayerCameraLeft.projectionMatrix;
 
         //플레이어의 월드->연결된 포털의 로컬->현재 포털의 월드로
-        Matrix4x4 LocalToWorldMatrix = transform.localToWorldMatrix * LinkedPortal.transform.worldToLocalMatrix * PlayerCamera.transform.localToWorldMatrix;
+        Matrix4x4 LocalToWorldMatrix = transform.localToWorldMatrix * LinkedPortal.transform.worldToLocalMatrix * PlayerCameraLeft.transform.localToWorldMatrix;
 
         Vector3 RenderPosition = LocalToWorldMatrix.GetColumn(3);
         Quaternion RenderRotation = LocalToWorldMatrix.rotation;

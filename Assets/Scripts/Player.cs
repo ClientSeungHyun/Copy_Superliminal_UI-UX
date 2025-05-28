@@ -101,11 +101,6 @@ public class Player : PortalTraveller
 
     private void ControllerLocomotion()
     {
-        if (OVRManager.isHmdPresent && RightController)
-        {
-            Debug.DrawRay(RightController.transform.position, Vector3.forward * 100.5f, Color.blue);
-        }
-        
         if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
             Vector2 vInput = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
