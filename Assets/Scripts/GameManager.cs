@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -8,7 +9,6 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         DontDestroyOnLoad(this);
-        Debug.Log("GameManager 생성됨!");
 
         Application.targetFrameRate = 60;
     }
@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SceneTransitionManager.Instance.ChangeLevel("Map");
+        }
     }
 }

@@ -77,6 +77,7 @@ public class Player : PortalTraveller
         DragSelectObject();
 
         CheckGround();
+
     }
 
     private void FixedUpdate()

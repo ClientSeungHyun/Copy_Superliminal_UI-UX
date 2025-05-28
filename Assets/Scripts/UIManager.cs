@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     private GameObject GameplaySettingPanel;
     private GameObject SoundSettingPanel;
     private GameObject MainSettingPanel;
+    private GameObject MainStartPanel;
 
     public bool ActiveSubtitle = true;
     public bool ActiveCameraShake = true;
@@ -39,11 +40,15 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-        MainSettingPanel = GameObject.Find("MainSettingPanel");
-        SoundSettingPanel = GameObject.Find("SoundSettingPanel");
-        GameplaySettingPanel = GameObject.Find("GamePlaySettingPanel");
-        GameplaySettingPanel.SetActive(false);
-        SoundSettingPanel.SetActive(false);
+        if(GameObject.Find("MainSettingPanel"))
+        {
+            MainSettingPanel = GameObject.Find("MainSettingPanel");
+            SoundSettingPanel = GameObject.Find("SoundSettingPanel");
+            GameplaySettingPanel = GameObject.Find("GamePlaySettingPanel");
+            MainSettingPanel.SetActive(false);
+            GameplaySettingPanel.SetActive(false);
+            SoundSettingPanel.SetActive(false);
+        }
     }
 
     public void ClosePanel(GameObject targetPanel)
@@ -140,4 +145,15 @@ public class UIManager : MonoBehaviour
         TextMeshProUGUI textComponent = textTMP.GetComponent<TextMeshProUGUI>();
         textComponent.text = UIVolume.ToString();
     }
+
+    public void SelectStartGameBtn()
+    {
+        SceneTransitionManager.Instance.ChangeLevel("Map");
+    }
+
+    public void SelectOptionBtn()
+    {
+        MainSettingPanel.SetActive(true);
+    }
+          
 }
