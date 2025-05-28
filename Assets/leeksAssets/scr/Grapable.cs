@@ -19,6 +19,8 @@ public class Grapable : MonoBehaviour
     private float takenObjSize = 0;
     private int takenObjSizeIndex = 0;
 
+    private int layerMask = 0;
+
     private float lastPositionCalculation;
 
     void Start()
@@ -27,11 +29,15 @@ public class Grapable : MonoBehaviour
         laserLine.useWorldSpace = true;
 
         targetForTakenObjects = GameObject.Find("targetForTakenObjects").transform;
+
+        layerMask = 1 << LayerMask.NameToLayer("Grabable");
     }
 
     void Update()
     {
         HandleObjectManipulation();  // 물체 조작
+
+        
     }
 
     // 물체를 집고 이동시키고, 크기 조정
@@ -50,10 +56,11 @@ public class Grapable : MonoBehaviour
         Ray ray = new Ray(RController.transform.position, forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, laserDistance) && hit.collider.CompareTag("GetAble"))
+        if (Physics.Raycast(ray, out hit, laserDistance, layerMask) && hit.collider.CompareTag("GetAble"))
         {
             // 레이저가 충돌한 곳까지의 위치 설정
             laserLine.SetPosition(1, hit.point);
+            isRayTouchingSomething = true;
 
             // 오른쪽 컨트롤러에서 트리거 버튼을 눌렀을 때 물체를 집음
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
@@ -62,6 +69,8 @@ public class Grapable : MonoBehaviour
                 {
                     takenObject = hit.collider.gameObject;
                     targetForTakenObjects.position = hit.point;
+
+                    layerMask = (-1) - (1 << LayerMask.NameToLayer("Grabable")); //해당 레이어를 제외
 
                     // 물체와의 거리 및 크기 저장
                     distanceMultiplier = Vector3.Distance(RController.transform.position, takenObject.transform.position);
@@ -88,13 +97,13 @@ public class Grapable : MonoBehaviour
                         takenObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                         takenObject.GetComponent<MeshRenderer>().receiveShadows = false;
                     }
-                    takenObject.gameObject.layer = 8;
+                    takenObject.gameObject.layer = LayerMask.NameToLayer("Grabable");
 
                     foreach (Transform child in takenObject.GetComponentsInChildren<Transform>())
                     {
                         takenObject.GetComponent<Rigidbody>().isKinematic = true;
                         takenObject.GetComponent<Collider>().isTrigger = true;
-                        child.gameObject.layer = 8;
+                        child.gameObject.layer = LayerMask.NameToLayer("Grabable");
                     }
 
                     // 오브젝트 크기 계산 - 가장 큰 사이즈로 설정
@@ -116,6 +125,7 @@ public class Grapable : MonoBehaviour
         else
         {
             // 레이저가 아무 것도 충돌하지 않았을 때
+            isRayTouchingSomething = false;
             laserLine.SetPosition(1, RController.transform.position + forward * laserDistance);
         }
 
@@ -132,7 +142,7 @@ public class Grapable : MonoBehaviour
                     centerCorrection = takenObject.transform.position - takenObject.GetComponent<MeshRenderer>().bounds.center;
                 }
 
-                takenObject.transform.position = Vector3.Lerp(takenObject.transform.position, targetForTakenObjects.position + centerCorrection, Time.deltaTime * 5);
+                takenObject.transform.position = Vector3.Lerp(takenObject.transform.position, targetForTakenObjects.position + centerCorrection, Time.deltaTime * 10);
                 takenObject.transform.rotation = Quaternion.Lerp(takenObject.transform.rotation, Quaternion.Euler(new Vector3(0, lastRotationY + Camera.main.transform.eulerAngles.y, 0)), Time.deltaTime * 20f);
 
                 // hit.distance - 카메라에서 벽까지의 거리
@@ -152,15 +162,16 @@ public class Grapable : MonoBehaviour
                 if (isRayTouchingSomething)
                 {
                     lastHitPoint = hit.point;
+                    Debug.Log(hit.transform.gameObject.layer);
                 }
                 else
                 {
                     lastHitPoint = RController.transform.position + ray.direction * 100f;
+                    Debug.Log("히트 안 하는 중");
                 }
 
                 targetForTakenObjects.position = Vector3.Lerp(targetForTakenObjects.position, lastHitPoint
                         - (ray.direction * lastPositionCalculation), Time.deltaTime * 10);
-
                 takenObject.transform.localScale = scaleMultiplier * (Vector3.Distance(Camera.main.transform.position, takenObject.transform.position) / distanceMultiplier);
             }
         }
@@ -185,12 +196,13 @@ public class Grapable : MonoBehaviour
                     takenObject.GetComponent<MeshRenderer>().receiveShadows = true;
                 }
                 takenObject.transform.parent = null;
-                takenObject.gameObject.layer = 0;
+                layerMask = 1 << LayerMask.NameToLayer("Grabable");
+
                 foreach (Transform child in takenObject.GetComponentsInChildren<Transform>())
                 {
                     takenObject.GetComponent<Rigidbody>().isKinematic = false;
                     takenObject.GetComponent<Collider>().isTrigger = false;
-                    child.gameObject.layer = 0;
+                    child.gameObject.layer = LayerMask.NameToLayer("Grabable");
                 }
 
                 takenObject = null;
