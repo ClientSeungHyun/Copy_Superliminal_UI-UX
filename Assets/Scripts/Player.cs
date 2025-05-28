@@ -103,7 +103,6 @@ public class Player : PortalTraveller
     {
         if (OVRManager.isHmdPresent && RightController)
         {
-            Debug.Log("adsf");
             Debug.DrawRay(RightController.transform.position, Vector3.forward * 100.5f, Color.blue);
         }
         
@@ -130,6 +129,13 @@ public class Player : PortalTraveller
         {
             Vector3 CurrentVelocity = RigidBodyCom.linearVelocity;
             RigidBodyCom.linearVelocity = new Vector3(0, CurrentVelocity.y, 0);
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            isGround = false;
+            RigidBodyCom.AddForce(new Vector3(0, JumpPower, 0));
+
         }
     }
 

@@ -56,7 +56,7 @@ public class Grapable : MonoBehaviour
         Ray ray = new Ray(RController.transform.position, forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, laserDistance, layerMask) && hit.collider.CompareTag("GetAble"))
+        if (Physics.Raycast(ray, out hit, laserDistance, layerMask))
         {
             // 레이저가 충돌한 곳까지의 위치 설정
             laserLine.SetPosition(1, hit.point);
