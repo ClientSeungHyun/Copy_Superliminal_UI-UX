@@ -4,6 +4,7 @@ using UnityEngine;
 public class ButtonDoor : MonoBehaviour
 {
     public GameObject Button;
+    public GameObject Button2 = null;
     private Vector3 FirstPosition;
     private Vector3 OpenPosition;
     private Transform MyTransform;
@@ -19,7 +20,11 @@ public class ButtonDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Button.GetComponent<Button>().isPressed)
+        if (Button2 == null && Button.GetComponent<Button>().isPressed)
+        {
+            MovetoOpenPosition();
+        }
+        else if(Button.GetComponent<Button>().isPressed && Button2.GetComponent<Button>().isPressed)
         {
             MovetoOpenPosition();
         }
