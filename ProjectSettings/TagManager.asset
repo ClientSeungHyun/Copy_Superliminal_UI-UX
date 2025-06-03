@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - GetAble
+  - Pickup
+  - Button
+  - Door
+  - Blocked
   layers:
   - Default
   - TransparentFX
