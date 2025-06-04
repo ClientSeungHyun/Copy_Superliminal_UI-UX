@@ -7,7 +7,7 @@ public class Grapable : MonoBehaviour
     public Transform trackingSpace;        // 트래킹 공간 (VR의 플레이 영역)
     public GameObject RController;         // 오른쪽 컨트롤러 오브젝트
 
-    private GameObject takenObject;        // 집은 오브젝트
+    public GameObject takenObject;        // 집은 오브젝트
     private Transform targetForTakenObjects;
     private Vector3 scaleMultiplier;       // 오브젝트의 원래 크기
     private float distanceMultiplier;      // 오브젝트와 컨트롤러 사이의 거리
@@ -56,7 +56,7 @@ public class Grapable : MonoBehaviour
         Ray ray = new Ray(RController.transform.position, forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, laserDistance, layerMask) && hit.collider.CompareTag("GetAble"))
+        if (Physics.Raycast(ray, out hit, laserDistance, layerMask))
         {
             // 레이저가 충돌한 곳까지의 위치 설정
             laserLine.SetPosition(1, hit.point);
@@ -162,12 +162,10 @@ public class Grapable : MonoBehaviour
                 if (isRayTouchingSomething)
                 {
                     lastHitPoint = hit.point;
-                    Debug.Log(hit.transform.gameObject.layer);
                 }
                 else
                 {
                     lastHitPoint = RController.transform.position + ray.direction * 100f;
-                    Debug.Log("히트 안 하는 중");
                 }
 
                 targetForTakenObjects.position = Vector3.Lerp(targetForTakenObjects.position, lastHitPoint
