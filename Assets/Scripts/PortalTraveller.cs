@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PortalTraveller : MonoBehaviour
@@ -34,7 +34,6 @@ public class PortalTraveller : MonoBehaviour
         }
     }
 
-    // Called once no longer touching portal (excluding when teleporting)
     public virtual void ExitPortalThreshold()
     {
         GraphicsClone.SetActive(false);
