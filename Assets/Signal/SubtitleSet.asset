@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86539f8d8f59275448f617918c7a6d48, type: 3}
+  m_Name: SubtitleSet
+  m_EditorClassIdentifier: 
+  subtitles:
+  - id: First
+    text: Do you find yourself prone to minimizing massive dilemmas...
+    duration: 4
+  - id: Second
+    text: ...Or for allowing the smallest problems to get blown completely out of
+      proportion?
+    duration: 4
+  - id: Third
+    text: At the Pierce Institute, our patent-pending Somnasculpt technology provides
+      safe and effective dream therapy while you rest in the comfort of our flagship
+      clinic...
+    duration: 10
+  - id: Fourth
+    text: ...Located right next to the secondary overflow parking lot at the University
+      Medical Centre.
+    duration: 6
+  - id: Fifth
+    text: 'Somnasculpt: We''ll make your dreams come true!'
+    duration: 4
