@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
 
     public void SelectStartGameBtn()
     {
-        SceneTransitionManager.Instance.ChangeLevel("Map");
+        SceneTransitionManager.Instance.ChangeLevel("Wonyong_Re");
     }
 
     public void SelectOptionBtn()

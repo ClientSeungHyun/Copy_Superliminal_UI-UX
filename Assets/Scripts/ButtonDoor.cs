@@ -8,13 +8,18 @@ public class ButtonDoor : MonoBehaviour
     private Vector3 FirstPosition;
     private Vector3 OpenPosition;
     private Transform MyTransform;
-    private float Speed = 1.0f;
+    private float Speed = 1.3f;
+
+    private bool isPlayOpenSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         MyTransform = this.GetComponent<Transform>();
         FirstPosition = MyTransform.position;
         OpenPosition = MyTransform.GetChild(0).position;
+
+        isPlayOpenSound = false;
     }
 
     // Update is called once per frame
@@ -36,11 +41,18 @@ public class ButtonDoor : MonoBehaviour
 
     private void MovetoOpenPosition()
     {
+        if(!isPlayOpenSound)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySound(this.gameObject, "open");
+            isPlayOpenSound = true;
+        }
+
         MyTransform.position = Vector3.MoveTowards(transform.position, OpenPosition, Speed * Time.deltaTime);
     }
 
     private void MovetoFirstPosition()
     {
+        isPlayOpenSound = false;
         MyTransform.position = Vector3.MoveTowards(transform.position, FirstPosition, Speed * Time.deltaTime);
     }
 }

@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SceneTransitionManager.Instance.ChangeLevel("Map");
+            SceneTransitionManager.Instance.ChangeLevel("Wonyong_Re");
         }
     }
 }

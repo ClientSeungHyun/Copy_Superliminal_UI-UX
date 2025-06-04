@@ -51,6 +51,8 @@ public class Button : MonoBehaviour
     {
         isPressed = true;
         isCollisionExit = false;
+
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySound(this.gameObject, "press");
     }
     private void OnCollisionStay(Collision collision)
     {

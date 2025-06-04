@@ -126,7 +126,7 @@ public class Player : PortalTraveller
             RigidBodyCom.linearVelocity = new Vector3(0, CurrentVelocity.y, 0);
         }
 
-        if (OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.One) && isGround)
         {
             isGround = false;
             RigidBodyCom.AddForce(new Vector3(0, JumpPower, 0));
@@ -190,72 +190,15 @@ public class Player : PortalTraveller
         }
     }
 
-    private void FindSelectObject()
-    {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Ray Mouseray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit Hit;
-            if (Physics.Raycast(Mouseray, out Hit, 100.0f, LayerMask.GetMask("Grabable")))
-            {
-                SelectObject = Hit.transform.gameObject;
-                SelectObject.GetComponent<Rigidbody>().useGravity = false;
-
-                SelectObjectOriginalScale = SelectObject.transform.localScale;
-                SelectObjectInitialDistance = Vector3.Distance(CameraRig.centerEyeAnchor.transform.position, SelectObject.transform.position);
-
-                SelectObjectTransformCom = Hit.transform;
-            }
-        }
-    }
-
-    private void DragSelectObject()
-    {
-        if (SelectObject)
-        {
-            Ray MouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 TargetPosition = MouseRay.GetPoint(10.0f);
-
-            int GrabableLayerMask = 1 << LayerMask.NameToLayer("Grabable");
-
-            // Raycast 해서 targetPosition 업데이트
-            RaycastHit hit;
-            if (Physics.Raycast(MouseRay, out hit, 100f, ~GrabableLayerMask))
-            {
-                TargetPosition = hit.point;
-            }
-
-            Collider ObjectCollider = SelectObject.GetComponent<Collider>();
-            float ObjectRadius = ObjectCollider.bounds.extents.magnitude * 0.5f;
-
-            Vector3 OffsetFromSurface = hit.normal * ObjectRadius;
-            TargetPosition += OffsetFromSurface;
-
-            SelectObject.transform.position = Vector3.Lerp(SelectObject.transform.position, TargetPosition, 10f * Time.deltaTime);
-
-            // 거리 비례 스케일 조정
-            float CurrentDistance = Vector3.Distance(CameraRig.centerEyeAnchor.transform.position, TargetPosition);
-            float ScaleMultiplier = CurrentDistance / SelectObjectInitialDistance;
-            SelectObject.transform.localScale = SelectObjectOriginalScale * ScaleMultiplier;
-
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                SelectObject.GetComponent<Rigidbody>().useGravity = true;
-                SelectObject.GetComponent<Rigidbody>().isKinematic = false;
-
-                SelectObject = null;
-            }
-        }
-    }
-
     private void CheckGround()
     {
         Vector3 CheckPosition = transform.position;
         CheckPosition.y -= CapsuleColliderCom.height * 0.5f;
 
-        bool bRayHit = Physics.Raycast(CheckPosition, Vector3.down, 0.5f, LayerMask.GetMask("Ground"));
-        bool bSphereHit = Physics.CheckSphere(CheckPosition, 0.3f, LayerMask.GetMask("Ground"));
+        int isGroundAbleLayer = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Grabable");
+
+        bool bRayHit = Physics.Raycast(CheckPosition, Vector3.down, 0.5f, isGroundAbleLayer);
+        bool bSphereHit = Physics.CheckSphere(CheckPosition, 0.3f, isGroundAbleLayer);
 
         isGround = bRayHit || bSphereHit;
 

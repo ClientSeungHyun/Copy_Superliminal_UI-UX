@@ -20,7 +20,7 @@ public class NoObjectDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.GetComponent<Grapable>().takenObject != null)
+        if(Player.GetComponent<InteractAble>().takenObject != null)
         {
             //MyMat.SetFloat("_Scale", 10);
             MyRenderer.enabled = true;
