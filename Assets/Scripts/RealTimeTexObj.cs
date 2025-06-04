@@ -20,7 +20,6 @@ public class RealTimeTexObj : MonoBehaviour
         if(TargetDecalObject != null )
             TargetDecalObject.SetActive(false);
 
-      
     }
 
     // Update is called once per frame
@@ -51,7 +50,7 @@ public class RealTimeTexObj : MonoBehaviour
     {
         target.position = source.position;
       //  target.rotation = source.rotation;
-      //  target.localScale = source.localScale;
+        target.localScale = source.localScale;
     }
 
 

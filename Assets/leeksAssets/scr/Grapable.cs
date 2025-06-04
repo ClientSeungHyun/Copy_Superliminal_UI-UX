@@ -3,7 +3,7 @@ using UnityEngine;
 public class Grapable : MonoBehaviour
 {
     public LineRenderer laserLine;         // 레이저 시각화를 위한 LineRenderer
-    public float laserDistance = 50f;      // 레이저 최대 거리
+    public float laserDistance = 1f;      // 레이저 최대 거리
     public Transform trackingSpace;        // 트래킹 공간 (VR의 플레이 영역)
     public GameObject RController;         // 오른쪽 컨트롤러 오브젝트
 
@@ -30,7 +30,7 @@ public class Grapable : MonoBehaviour
 
         targetForTakenObjects = GameObject.Find("targetForTakenObjects").transform;
 
-        layerMask = 1 << LayerMask.NameToLayer("Grabable");
+        layerMask = 1 << LayerMask.NameToLayer("Grabable") | 1 << LayerMask.NameToLayer("RealTimeTexture");
     }
 
     void Update()
@@ -70,7 +70,7 @@ public class Grapable : MonoBehaviour
                     takenObject = hit.collider.gameObject;
                     targetForTakenObjects.position = hit.point;
 
-                    layerMask = (-1) - (1 << LayerMask.NameToLayer("Grabable")); //해당 레이어를 제외
+                    layerMask = ~((1 << LayerMask.NameToLayer("Grabable")) | (1 << LayerMask.NameToLayer("RealTimeTexture")));
 
                     // 물체와의 거리 및 크기 저장
                     distanceMultiplier = Vector3.Distance(RController.transform.position, takenObject.transform.position);
@@ -194,13 +194,23 @@ public class Grapable : MonoBehaviour
                     takenObject.GetComponent<MeshRenderer>().receiveShadows = true;
                 }
                 takenObject.transform.parent = null;
-                layerMask = 1 << LayerMask.NameToLayer("Grabable");
+                layerMask = 1 << LayerMask.NameToLayer("Grabable") | 1 << LayerMask.NameToLayer("RealTimeTexture");
+
 
                 foreach (Transform child in takenObject.GetComponentsInChildren<Transform>())
                 {
                     takenObject.GetComponent<Rigidbody>().isKinematic = false;
                     takenObject.GetComponent<Collider>().isTrigger = false;
-                    child.gameObject.layer = LayerMask.NameToLayer("Grabable");
+                    
+
+                    if (takenObject.GetComponent<RealTimeTexObj>())
+                    {
+                        child.gameObject.layer = LayerMask.NameToLayer("RealTimeTexture");
+                    }
+                    else
+                    {
+                        child.gameObject.layer = LayerMask.NameToLayer("Grabable");
+                    }
                 }
 
                 takenObject = null;
