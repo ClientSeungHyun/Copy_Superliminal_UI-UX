@@ -42,6 +42,11 @@ public class Player : PortalTraveller
     float smoothPitch;
     Vector3 velocity;
 
+    bool isEnding;
+    Vector3 endingStartPos = Vector3.zero;
+    Vector3 endingTargetPos = Vector3.zero;
+    float endingDistance;
+
     protected void Awake()
     {
        
@@ -69,6 +74,8 @@ public class Player : PortalTraveller
         pitch = CameraRig.centerEyeAnchor.transform.localEulerAngles.x;
         smoothYaw = yaw;
         smoothPitch = pitch;
+
+        isEnding = false;
     }
 
     void Update()
@@ -83,14 +90,21 @@ public class Player : PortalTraveller
     private void FixedUpdate()
     {
         #region 이동
-        if (OVRManager.isHmdPresent)
+        if (OVRManager.isHmdPresent && !isEnding)
         {
             ControllerLocomotion();
         }
-        else
+        else if (!isEnding)
         {
             KeyboardLocomotion();
         }
+
+        if (isEnding)
+        {
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, endingTargetPos, 0.1f);
+        }
+
+
         #endregion
     }
 
@@ -216,5 +230,14 @@ public class Player : PortalTraveller
         transform.eulerAngles = Vector3.up * smoothYaw;
         velocity = toPortal.TransformVector(fromPortal.InverseTransformVector(velocity));
         Physics.SyncTransforms();
+    }
+
+    public void StartPlayerEning(Vector3 targetPos)
+    {
+        isEnding = true;
+        endingStartPos = transform.position;
+        endingTargetPos = targetPos;
+
+        endingDistance = Vector3.Distance(endingTargetPos, endingStartPos);
     }
 }

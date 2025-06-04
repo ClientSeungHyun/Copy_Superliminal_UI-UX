@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Blocked
   - GetAble
+  - EndingStart
   layers:
   - Default
   - TransparentFX
