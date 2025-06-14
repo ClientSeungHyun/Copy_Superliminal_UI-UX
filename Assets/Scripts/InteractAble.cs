@@ -85,6 +85,7 @@ public class InteractAble : MonoBehaviour
                         takenObject.AddComponent<Rigidbody>();
                     }
                     takenObject.GetComponent<Rigidbody>().isKinematic = true;
+                    takenObject.GetComponent<Rigidbody>().mass = 2f;
 
                     // Collider를 Trigger로 설정
                     foreach (Collider col in takenObject.GetComponents<Collider>())

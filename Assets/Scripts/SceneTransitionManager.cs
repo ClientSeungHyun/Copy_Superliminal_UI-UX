@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -46,15 +47,21 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         SceneManager.LoadScene("LoadingScene");
     }
 
-    public void StartFadeIn(float Duration = 1f)
+    public void StartFadeIn(float Duration = 1f, Color? fadeColor = null)
     {
+        Color color = fadeColor ?? Color.black;
+        fadeImage.color = color;
+
         fadeDuration = Duration;
         fadeImage.gameObject.SetActive(true);
         StartCoroutine(Fade(1, 0));
     }
 
-    public void StartFadeOut(float Duration = 1f)
+    public void StartFadeOut(float Duration = 1f, Color? fadeColor = null)
     {
+        Color color = fadeColor ?? Color.black;
+        fadeImage.color = color;
+
         fadeDuration = Duration;
         fadeImage.gameObject.SetActive(true);
         StartCoroutine(Fade(0, 1));

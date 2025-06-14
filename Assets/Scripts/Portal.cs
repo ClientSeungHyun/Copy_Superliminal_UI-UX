@@ -54,18 +54,16 @@ public class Portal : MonoBehaviour
         PortalCamera.projectionMatrix = PlayerCameraLeft.projectionMatrix;
 
         //플레이어의 월드->연결된 포털의 로컬->현재 포털의 월드로
-        Matrix4x4 LocalToWorldMatrix = transform.localToWorldMatrix * LinkedPortal.transform.worldToLocalMatrix * PlayerCameraLeft.transform.localToWorldMatrix;
+        Matrix4x4 newWorldMatrix = transform.localToWorldMatrix * LinkedPortal.transform.worldToLocalMatrix * PlayerCameraLeft.transform.localToWorldMatrix;
 
-        Vector3 RenderPosition = LocalToWorldMatrix.GetColumn(3);
-        Quaternion RenderRotation = LocalToWorldMatrix.rotation;
+        Vector3 RenderPosition = newWorldMatrix.GetColumn(3);
+        Quaternion RenderRotation = newWorldMatrix.rotation;
 
         PortalCamera.transform.SetPositionAndRotation(RenderPosition, RenderRotation);
 
         PortalScreen.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         LinkedPortal.PortalScreen.material.SetInt("DisplayMask", 1);
 
-        //SetNearClipPlane();
-        //HandleClipping();
         PortalCamera.Render();
 
         PortalScreen.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
@@ -85,10 +83,6 @@ public class Portal : MonoBehaviour
             PortalCamera.targetTexture = ViewTexture;
             LinkedPortal.PortalScreen.material.SetTexture("_MainTex", ViewTexture);
         }
-    }
-
-    void LateUpdate()
-    {
     }
 
     void HandleTravellers()
